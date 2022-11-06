@@ -7,9 +7,13 @@ import FormContainer from '../components/FormContainer'
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [username, setusername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [fatherName, setFatherName] = useState('')
+  const [address, setaddress] = useState('')
+  const [dob, setdob] = useState('')
+  const [aadharNo, setAadharNo] = useState('')
   const [message, setMessage] = useState('')
 
   const dispatch = useDispatch()
@@ -20,11 +24,15 @@ const ProfileScreen = ({ history }) => {
   const { success } = userUpdateProfile
 
   useEffect(() => {
-    if (!user.name) {
+    if (!user?.name) {
       dispatch(getUserDetails('profile'))
     } else {
       setName(user.name)
-      setEmail(user.email)
+      setusername(user.username)
+      setFatherName(user.fatherName)
+      setaddress(user.address)
+      setdob(user.dob)
+      setAadharNo(user.aadharNo)
     }
   }, [dispatch, history, user])
 
@@ -33,7 +41,7 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Password do not match')
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }))
+      dispatch(updateUserProfile({ id: user._id, name, username, password, address, fatherName, dob , aadharNo }))
     }
   }
   return (
@@ -56,16 +64,57 @@ const ProfileScreen = ({ history }) => {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='email'>Email Address</label>
+          <label htmlFor='username'>username Address</label>
           <input
-            type='email'
-            placeholder='Enter email'
+            type='username'
+            placeholder='Enter username'
             className='form-control'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
             required
           />
         </div>
+        <div className='form-group'>
+          <label htmlFor='name'>Father Name</label>
+          <input
+            type='text'
+            placeholder='Enter father name'
+            className='form-control'
+            value={fatherName}
+            onChange={(e) => setFatherName(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Address</label>
+          <input
+            type='text'
+            placeholder='Enter address'
+            className='form-control'
+            value={address}
+            onChange={(e) => setaddress(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Date Of Birth</label>
+          <input
+            type='date'
+            placeholder='Enter date of birth'
+            className='form-control'
+            value={dob}
+            onChange={(e) => setdob(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Aadhar Number</label>
+          <input
+            type='number'
+            placeholder='Enter Aadhar Number'
+            className='form-control'
+            value={aadharNo}
+            onChange={(e) => setAadharNo(e.target.value)}
+            required
+          />
+          </div>
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input

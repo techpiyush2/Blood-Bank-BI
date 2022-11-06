@@ -12,7 +12,7 @@ const AdminPrivateRoute = ({ component: Component, ...rest }) => {
       render={(props) =>
         !userInfo && !loading ? (
           <Redirect to='/login' />
-        ) : userInfo && !userInfo.isAdmin ? (
+        ) : userInfo && !userInfo.isHospital ? (
           <Redirect to='/' />
         ) : (
           <Component {...props} />

@@ -12,32 +12,22 @@ export const getBloodStore = asyncHandler(async (req, res) => {
 export const postBloodStore = asyncHandler(async (req, res) => {
   const user = req.user.id
   const donor = req.body.donor
-  const hb = req.body.hb
+  const disease = req.body.disease
+  const aadhar = req.body.aadhar
   const blood_group = req.body.blood_group
-  const blood_component = req.body.blood_component
-  const unit = req.body.unit
-  const active = true
-  const bag = req.body.bag.toUpperCase()
+  const donateDate = req.body.donateDate
+  const active = req.body.active
 
-  let duplicateHandler = await BloodStoreModel.find({
-    blood_component,
-    bag,
-  })
 
-  if (duplicateHandler.length >= 1) {
-    res.status(400)
-    throw new Error('This bag is already in the blood store')
-  }
 
   const bloodStoreFields = {
     user,
     donor,
-    hb,
+    disease,
+    donateDate,
     blood_group,
-    blood_component,
-    unit,
+    aadhar,
     active,
-    bag,
   }
 
   const bloodStore = new BloodStoreModel(bloodStoreFields)
@@ -54,22 +44,20 @@ export const postBloodStore = asyncHandler(async (req, res) => {
 export const putBloodStore = asyncHandler(async (req, res) => {
   const user = req.user.id
   const donor = req.body.donor
-  const hb = req.body.hb
+  const disease = req.body.disease
+  const aadhar = req.body.aadhar
   const blood_group = req.body.blood_group
-  const blood_component = req.body.blood_component
-  const unit = req.body.unit
-  const active = true
-  const bag = req.body.bag.toUpperCase()
+  const donateDate = req.body.donateDate
+  const active = req.body.active
 
   const bloodStoreFields = {
     user,
     donor,
-    hb,
+    disease,
+    donateDate,
     blood_group,
-    blood_component,
-    unit,
+    aadhar,
     active,
-    bag,
   }
 
   const bloodStore = await BloodStoreModel.findOneAndUpdate(

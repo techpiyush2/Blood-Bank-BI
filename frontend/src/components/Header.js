@@ -14,11 +14,6 @@ const Header = () => {
   const authLinks = (
     <ul className='navbar-nav mr-right mb-2 mb-lg-0'>
       <li className='nav-item'>
-        <Link to='/comment' className='nav-link'>
-          Comment
-        </Link>
-      </li>
-      <li className='nav-item'>
         <Link to='/blood-request' className='nav-link'>
           Blood Request
         </Link>
@@ -53,7 +48,7 @@ const Header = () => {
         </ul>
       </li>
 
-      {userInfo && userInfo.isAdmin && (
+      {userInfo && userInfo.isHospital && (
         <li className='nav-item dropdown'>
           <span
             className='nav-link dropdown-toggle'
@@ -70,16 +65,6 @@ const Header = () => {
                 Users
               </Link>
             </li>
-            <li>
-              <Link to='/admin/users/logs' className='dropdown-item'>
-                Users Log
-              </Link>
-            </li>
-            <li>
-              <Link to='/admin/report' className='dropdown-item'>
-                Report
-              </Link>
-            </li>
           </ul>
         </li>
       )}
@@ -88,14 +73,19 @@ const Header = () => {
 
   const guestLinks = (
     <ul className='navbar-nav mr-right mb-2 mb-lg-0'>
-      {/* <li className='nav-item'>
+      <li className='nav-item'>
         <Link to='/register' className='nav-link'>
           Register
         </Link>
-      </li> */}
+      </li>
       <li className='nav-item'>
         <Link to='/login' className='nav-link'>
           Login
+        </Link>
+      </li>
+      <li className='nav-item'>
+        <Link to='/login' className='nav-link'>
+          Hospital Login
         </Link>
       </li>
     </ul>
@@ -105,7 +95,7 @@ const Header = () => {
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
         <Link className='navbar-brand' to='/'>
-          YARDIMELi BLOOD BANK
+          BLOOD BANK
         </Link>
         <button
           className='navbar-toggler'

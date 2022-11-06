@@ -8,8 +8,12 @@ import { register } from '../actions/userActions'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [username, setusername] = useState('')
   const [password, setPassword] = useState('')
+  const [fatherName, setFatherName] = useState('')
+  const [address, setaddress] = useState('')
+  const [dob, setdob] = useState('')
+  const [aadharNo, setAadharNo] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState('')
 
@@ -20,9 +24,13 @@ const RegisterScreen = ({ location, history }) => {
   useEffect(() => {
     if (success) {
       setName('')
-      setEmail('')
+      setusername('')
       setPassword('')
       setConfirmPassword('')
+      setFatherName('')
+      setaddress('')
+      setdob()
+      setAadharNo()
     }
   }, [success])
 
@@ -31,7 +39,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Password do not match')
     } else {
-      dispatch(register(name, email, password))
+      dispatch(register(name, username, password, address, fatherName, dob , aadharNo))
     }
   }
   return (
@@ -56,13 +64,54 @@ const RegisterScreen = ({ location, history }) => {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='email'>Email Address</label>
+          <label htmlFor='username'>Username</label>
           <input
-            type='email'
-            placeholder='Enter email'
+            type='username'
+            placeholder='Enter username'
             className='form-control'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='name'>Father Name</label>
+          <input
+            type='text'
+            placeholder='Enter father name'
+            className='form-control'
+            value={fatherName}
+            onChange={(e) => setFatherName(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Address</label>
+          <input
+            type='text'
+            placeholder='Enter address'
+            className='form-control'
+            value={address}
+            onChange={(e) => setaddress(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Date Of Birth</label>
+          <input
+            type='date'
+            placeholder='Enter date of birth'
+            className='form-control'
+            value={dob}
+            onChange={(e) => setdob(e.target.value)}
+            required
+          />
+        </div>  <div className='form-group'>
+          <label htmlFor='name'>Aadhar Number</label>
+          <input
+            type='number'
+            placeholder='Enter Aadhar Number'
+            className='form-control'
+            value={aadharNo}
+            onChange={(e) => setAadharNo(e.target.value)}
             required
           />
         </div>

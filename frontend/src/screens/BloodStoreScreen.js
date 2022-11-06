@@ -17,12 +17,11 @@ import { Confirm } from '../components/Confirm'
 
 const initialValues = {
   donor: '',
-  hb: '',
-  blood_component: '',
+  disease: '',
+  aadhar: 0,
   blood_group: '',
-  unit: '',
-  active: true,
-  bag: '',
+  donateDate: Date.now(),
+  active: false,
 }
 
 const BloodStoreScreen = () => {
@@ -61,16 +60,14 @@ const BloodStoreScreen = () => {
     setValues({
       ...values,
       donor: '',
-      hb: '',
-      blood_component: '',
+      disease: '',
+      aadhar: '',
       blood_group: '',
-      unit: '',
-      active: true,
-      bag: '',
+      donateDate: Date.now(),
+      active: false,
     })
     setEdit(false)
   }
-
   useEffect(() => {
     dispatch(listBloodStore())
     if (successCreate || successUpdate) {
@@ -100,11 +97,11 @@ const BloodStoreScreen = () => {
       ...values,
       _id: e._id,
       donor: e.donor,
-      hb: e.hb,
-      blood_component: e.blood_component,
+      disease: e.disease,
+      aadhar: e.aadhar,
       blood_group: e.blood_group,
-      unit: e.unit,
-      bag: e.bag,
+      donateDate : e.donateDate,
+      active: e.active,
     })
     setEdit(true)
   }
@@ -187,15 +184,15 @@ const BloodStoreScreen = () => {
                     </div>
 
                     <div className='form-group'>
-                      <label htmlFor='hb'>HB</label>
+                      <label htmlFor='disease'>disease</label>
                       <input
                         required
-                        name='hb'
+                        name='disease'
                         onChange={handleChange}
                         type='text'
-                        value={values.hb}
-                        className='form-control '
-                        placeholder='Enter hb'
+                        value={values.disease}
+                        className='form-control'
+                        placeholder='Enter any disease you have'
                       />
                     </div>
 
@@ -223,50 +220,29 @@ const BloodStoreScreen = () => {
                     </div>
 
                     <div className='form-group'>
-                      <label htmlFor='blood_component'>Blood Component</label>
-                      <select
-                        name='blood_component'
-                        onChange={handleChange}
-                        value={values.blood_component}
-                        className='form-control '
-                        required
-                      >
-                        <option value='' disabled>
-                          Blood Component...
-                        </option>
-                        <option value='Plasma'>Plasma</option>
-                        <option value='Platelet'>Platelet</option>
-                        <option value='RBC'>RBC</option>
-                        <option value='Whole Blood'>Whole Blood</option>
-                      </select>
-                    </div>
-
-                    <div className='form-group'>
-                      <label htmlFor='unit'>Unit</label>
+                      <label htmlFor='aadhar'>Aadhar Number</label>
                       <input
-                        required
-                        name='unit'
+                        name='aadhar'
+                        type='number'
                         onChange={handleChange}
-                        type='text'
-                        value={values.unit}
-                        className='form-control '
-                        placeholder='Enter unit per vol'
+                        value={values.aadhar}
+                        className='form-control'
+                        placeholder='Enter Aadhar number'
+                        required
                       />
                     </div>
-
                     <div className='form-group'>
-                      <label htmlFor='bag'>Bag</label>
+                      <label htmlFor='unit'>Donate Date</label>
                       <input
                         required
-                        name='bag'
+                        name='donateDate'
                         onChange={handleChange}
-                        type='text'
-                        value={values.bag}
-                        className='form-control '
-                        placeholder='Enter bag number'
+                        type='date'
+                        value={values.donateDate}
+                        className='form-control'
+                        placeholder='Enter donate date'
                       />
                     </div>
-
                     <div className='modal-footer'>
                       <button
                         type='button'
@@ -351,7 +327,7 @@ const BloodStoreScreen = () => {
                         >
                           <i className='fas fa-edit'></i>
                         </button>
-                        {userInfo && userInfo.isAdmin && (
+                        {userInfo && userInfo.isHospital && (
                           <button
                             className='btn btn-danger btn-sm'
                             onClick={() => deleteHandler(blood._id)}
@@ -401,3 +377,4 @@ const BloodStoreScreen = () => {
 }
 
 export default BloodStoreScreen
+

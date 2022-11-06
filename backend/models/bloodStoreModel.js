@@ -10,7 +10,10 @@ const bloodStoreSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    hb: {
+    anyDisease : {
+      type : String,
+    },
+    aadhar: {
       type: Number,
       required: true,
     },
@@ -18,21 +21,13 @@ const bloodStoreSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    blood_component: {
-      type: String,
-      default: '',
+    donateDate : {
+     type : Date,
+       default : Date.now()
     },
-    unit: {
-      type: Number,
-      required: true,
-    },
-    bag: {
-      type: String,
-      required: true,
-    },
-    active: {
+    active:{
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   {

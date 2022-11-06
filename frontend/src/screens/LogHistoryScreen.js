@@ -42,7 +42,7 @@ const UserLogHistoryScreen = () => {
                 <tr>
                   <th>LOG ID</th>
                   <th>NAME</th>
-                  <th>EMAIL</th>
+                  <th>username</th>
                   <th>LOGIN DATE</th>
                   <th>LOGIN TIME</th>
                 </tr>
@@ -54,8 +54,8 @@ const UserLogHistoryScreen = () => {
                       <td>{log._id}</td>
                       <td>{log.user.name}</td>
                       <td>
-                        <a href={`mailto:${log.user.email}`}>
-                          {log.user.email}
+                        <a href={`mailto:${log.user.username}`}>
+                          {log.user.username}
                         </a>
                       </td>
                       <td>

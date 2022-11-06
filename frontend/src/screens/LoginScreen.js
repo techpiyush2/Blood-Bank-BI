@@ -7,7 +7,7 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 
 const LoginScreen = ({ history }) => {
-  const [email, setEmail] = useState('')
+  const [username, setusername] = useState('')
   const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const LoginScreen = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    dispatch(login(username, password))
   }
   return (
     <FormContainer>
@@ -30,13 +30,13 @@ const LoginScreen = ({ history }) => {
 
       <form onSubmit={submitHandler}>
         <div className='form-group'>
-          <label htmlFor='email'>Email Address</label>
+          <label htmlFor='username'>Username</label>
           <input
-            type='email'
+            type='username'
             className='form-control'
-            placeholder='Enter email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder='Enter username'
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
           />
         </div>
 
@@ -54,14 +54,13 @@ const LoginScreen = ({ history }) => {
           Sign In
         </button>
       </form>
-
-      {/* <div className='row py-3'>
+      <div className='row py-3'>
         <div className='col'>
           New Customer?
           <Link to='/register'> Register</Link>
         </div>
-      </div> */}
-    </FormContainer>
+      </div>
+    </FormContainer>         
   )
 }
 

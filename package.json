@@ -1,16 +1,16 @@
 {
   "name": "blood_bank",
   "version": "1.0.1",
-  "description": "Complete YARDIMELi Blood Bank System",
+  "description": "Piyush Blood Bank",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/server",
+    "start": "nodemon backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Ahmed Ibrahim",
+  "author": "Piyush",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.20.0",

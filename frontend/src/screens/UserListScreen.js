@@ -4,22 +4,18 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
   listUsers,
-  deleteUser,
   updateUser,
   register,
 } from '../actions/userActions'
 import ReactPaginate from 'react-paginate'
 
-import { confirmAlert } from 'react-confirm-alert'
-import { Confirm } from '../components/Confirm'
-
 const UserListScreen = ({ match }) => {
   const [id, setId] = useState(null)
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [username, setusername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isHospital, setisHospital] = useState(false)
   const [message, setMessage] = useState('')
   const [edit, setEdit] = useState(false)
 
@@ -47,7 +43,7 @@ const UserListScreen = ({ match }) => {
 
   const formCleanHandler = () => {
     setName('')
-    setEmail('')
+    setusername('')
     setPassword('')
     setConfirmPassword('')
     setEdit(false)
@@ -71,15 +67,15 @@ const UserListScreen = ({ match }) => {
       setMessage('Password do not match')
     } else {
       edit
-        ? dispatch(updateUser({ _id: id, name, email, password, isAdmin }))
-        : dispatch(register(name, email, password))
+        ? dispatch(updateUser({ _id: id, name, username, password, isHospital }))
+        : dispatch(register(name, username, password))
     }
   }
 
   const editHandler = (user) => {
     setName(user.name)
-    setEmail(user.email)
-    setIsAdmin(user.isAdmin)
+    setusername(user.username)
+    setisHospital(user.isHospital)
     setPassword('')
     setId(user._id)
     setEdit(true)
@@ -155,13 +151,13 @@ const UserListScreen = ({ match }) => {
                     />
                   </div>
                   <div className='form-group'>
-                    <label htmlFor='email'>Email Address</label>
+                    <label htmlFor='username'>username Address</label>
                     <input
-                      type='email'
-                      placeholder='Enter email'
+                      type='username'
+                      placeholder='Enter username'
                       className='form-control'
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={username}
+                      onChange={(e) => setusername(e.target.value)}
                       required
                     />
                   </div>
@@ -189,12 +185,12 @@ const UserListScreen = ({ match }) => {
                   <div className='form-group'>
                     <input
                       type='checkbox'
-                      id='isAdmin'
+                      id='isHospital'
                       label='Is Admin'
-                      checked={isAdmin}
-                      onChange={(e) => setIsAdmin(e.target.checked)}
+                      checked={isHospital}
+                      onChange={(e) => setisHospital(e.target.checked)}
                     />{' '}
-                    <label htmlFor='isAdmin' id='isAdmin'>
+                    <label htmlFor='isHospital' id='isHospital'>
                       Admin?
                     </label>
                   </div>
@@ -247,7 +243,7 @@ const UserListScreen = ({ match }) => {
                 <tr>
                   <th>ID</th>
                   <th>NAME</th>
-                  <th>EMAIL</th>
+                  <th>username</th>
                   <th>ADMIN</th>
                   <th></th>
                 </tr>
@@ -258,10 +254,10 @@ const UserListScreen = ({ match }) => {
                     <td>{user._id}</td>
                     <td>{user.name}</td>
                     <td>
-                      <a href={`mailto:${user.email}`}>{user.email}</a>
+                      <a href={`mailto:${user.username}`}>{user.username}</a>
                     </td>
                     <td>
-                      {user.isAdmin ? (
+                      {user.isHospital ? (
                         <i
                           className='fas fa-check'
                           style={{ color: 'green' }}

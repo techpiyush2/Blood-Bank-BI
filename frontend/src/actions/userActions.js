@@ -29,7 +29,7 @@ import {
   USER_LOG_HISTORY_FAIL,
 } from '../constants/userConstants'
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST })
 
@@ -39,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       `/api/users/login`,
-      { email, password },
+      { username, password },
       config
     )
 
@@ -82,7 +82,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_LIST_RESET })
 }
 
-export const register = (name, email, password) => async (dispatch) => {
+export const register = (name, username, password, address, fatherName, dob , aadharNo) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST })
 
@@ -90,7 +90,7 @@ export const register = (name, email, password) => async (dispatch) => {
       headers: { 'Content-Type': 'application/json' },
     }
 
-    await axios.post(`/api/users`, { name, email, password }, config)
+    await axios.post(`/api/users`, { name, username, password, address, fatherName, dob , aadharNo }, config)
 
     dispatch({ type: USER_REGISTER_SUCCESS })
   } catch (error) {

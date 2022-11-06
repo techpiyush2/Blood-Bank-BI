@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userScheme = mongoose.Schema(
+
+const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    email: {
+    username: {
       type: String,
       required: true,
       unique: true,
@@ -16,7 +17,13 @@ const userScheme = mongoose.Schema(
       type: String,
       required: true,
     },
-    isAdmin: {
+   address : {
+       type  : String
+    },
+    fatherName : String,
+    dob : Date, 
+    aadharNo : Number,
+    isHospital: {
       type: Boolean,
       required: true,
       default: false,
@@ -27,11 +34,11 @@ const userScheme = mongoose.Schema(
   }
 );
 
-userScheme.methods.matchPassword = async function (enteredPassword) {
+userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userScheme.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
@@ -39,5 +46,8 @@ userScheme.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-const User = mongoose.model("User", userScheme);
+const User = mongoose.model("User", userSchema);
 export default User;
+
+
+//Cast to date failed for value "baba@gmail.com" at path "username" for model "User"

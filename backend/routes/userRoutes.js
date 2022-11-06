@@ -8,7 +8,6 @@ import {
   deleteUser,
   getUserById,
   updateUser,
-  logHistory,
 } from '../controllers/usersController.js'
 import { admin, protect } from '../middleware/authMiddleware.js'
 
@@ -16,7 +15,6 @@ const router = express.Router()
 
 router.route('/').post(registerUser).get(getUsers)
 router.route('/login').post(authUser)
-router.route('/log').get(logHistory)
 
 router
   .route('/profile')

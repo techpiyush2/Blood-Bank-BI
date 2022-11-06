@@ -7,9 +7,6 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import bloodStoreRoutes from './routes/bloodStoreRoutes.js'
-import bloodRequestRoutes from './routes/bloodRequestRoutes.js'
-import bloodIssueRoutes from './routes/bloodIssueRoutes.js'
-import commentRoutes from './routes/commentRoutes.js'
 
 dotenv.config()
 
@@ -20,16 +17,11 @@ const app = express()
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
-
 app.use(express.json())
 
 app.use('/api/users', userRoutes)
 app.use('/api/blood-store', bloodStoreRoutes)
-app.use('/api/blood-request', bloodRequestRoutes)
-app.use('/api/blood-issue', bloodIssueRoutes)
-app.use('/api/comment', commentRoutes)
 
-// Set static folder
 const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {
@@ -43,7 +35,6 @@ if (process.env.NODE_ENV === 'production') {
     res.send('API is running....')
   })
 }
-
 app.use(notFound)
 
 app.use(errorHandler)
@@ -53,6 +44,6 @@ const PORT = process.env.PORT || 6000
 app.listen(
   PORT,
   console.log(
-    `Server running ${process.env.NODE_ENV} mode on post ${PORT}`.yellow.bold
+    `Server running on post ${PORT}`.yellow
   )
 )

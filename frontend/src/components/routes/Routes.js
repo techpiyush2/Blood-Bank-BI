@@ -6,42 +6,22 @@ import LoginScreen from '../../screens/LoginScreen'
 import ProfileScreen from '../../screens/ProfileScreen'
 import UserListScreen from '../../screens/UserListScreen'
 import BloodStoreScreen from '../../screens/BloodStoreScreen'
-import BloodRequestScreen from '../../screens/BloodRequestScreen'
 import NotFound from '../NotFound'
-import UserLogHistoryScreen from '../../screens/LogHistoryScreen'
-
+import Register from '../../screens/RegisterScreen'
 import PrivateRoute from '../routes/PrivateRoute'
 import AdminPrivateRoute from '../routes/AdminPrivateRoute'
-import BloodIssueScreen from '../../screens/BloodIssueScreen'
-import CommentScreen from '../../screens/CommentScreen'
-import ReportScreen from '../../screens/ReportScreen'
 
 const Routes = () => {
   return (
     <section className='container'>
       <Switch>
         <Route path='/login' component={LoginScreen} />
-        <Route path='/admin/report' component={ReportScreen} />
-        <Route
-          path='/admin/users/logs'
-          component={UserLogHistoryScreen}
-        />
-        <Route path='/comment' component={CommentScreen} />
-        <Route path='/profile' component={ProfileScreen} />
-        <Route path='/blood-issue/:id' component={BloodIssueScreen} />
-        <Route exact path='/blood-store' component={BloodStoreScreen} />
-        <Route
+        <Route path='/register' component={Register} />
+        <PrivateRoute path='/profile' component={ProfileScreen} />
+        <PrivateRoute exact path='/blood-store' component={BloodStoreScreen} />
+        <PrivateRoute
           path='/blood-store/page/:pageNumber'
           component={BloodStoreScreen}
-        />
-        <Route
-          exact
-          path='/blood-request'
-          component={BloodRequestScreen}
-        />
-        <Route
-          path='/blood-request/page/:pageNumber'
-          component={BloodRequestScreen}
         />
         <AdminPrivateRoute
           exact

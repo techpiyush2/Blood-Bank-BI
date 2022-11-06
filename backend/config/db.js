@@ -1,18 +1,17 @@
 import mongoose from 'mongoose'
+import { Config } from './config.js'
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect('mongodb+srv://piyush:piyush0@cluster0.v8tagvt.mongodb.net/?retryWrites=true&w=majority', {
+    const conn = await mongoose.connect(Config.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false,
     })
-    console.log(`MongoDB connected: ${conn.connection.host}`.cyan.underline)
+    console.log(`MongoDB connected Successfully`.cyan)
   } catch (error) {
-    console.error(`Error: ${error}`.red.underline.bold)
-
-    // Exit process with failure
+    console.error(`Error: ${error}`.red.underline)
     process.exit(1)
   }
 }
